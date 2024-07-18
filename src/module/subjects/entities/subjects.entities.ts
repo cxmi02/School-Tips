@@ -25,8 +25,6 @@ export class Subject {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @OneToMany(() => Tip, (tip) => tip.subject)
-  // tips: Tip[];
   @OneToMany( type => Tip, tip => tip.subject)
   tips: Tip[];
 }

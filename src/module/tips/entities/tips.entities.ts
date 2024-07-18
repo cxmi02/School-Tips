@@ -24,9 +24,6 @@ export class Tip {
   @Column()
   author: string;
 
-  @Column()
-  url: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
