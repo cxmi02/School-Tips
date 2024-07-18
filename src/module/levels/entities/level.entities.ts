@@ -16,6 +16,9 @@ export class Level {
   @Column({ unique: true })
   name: string;
 
+  @Column({ type: 'text', nullable: true })
+  description?: string;
+  
   @CreateDateColumn()
   createdAt: Date;
 

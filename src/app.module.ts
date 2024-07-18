@@ -21,11 +21,7 @@ import { SubjectsModule } from './module/subjects/subject.module';
       username: config().database.username,
       password: config().database.password,
       database: config().database.db,
-      autoLoadEntities: true,
       synchronize: true,
-      extra: {
-        ssl: true,
-      },
     }),
     ScheduleModule.forRoot(),
     TipsModule,
