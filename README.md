@@ -26,48 +26,137 @@
 
 This repository contains an API developed with NestJS and TypeORM for managing school tips. The API allows creating, updating, deleting (soft delete), and querying school tips. Additionally, it supports paginated queries and filtering by subject and level. PostgreSQL is the database used, and the API is deployed in a public cloud.
 
+## Content Table
 
-## Installation
+- [Description](#description) o
+- [Characteristics](#characteristics) o
+- [Functionalities](#functionalities) o
+- [Requirements](#requirements) x
+- [Project Configuration](#project-configuration) o
+- [Running the App](#running-the-app) o
+- [Docker Commands](#docker-commands) o
+- [Queries in Postman and Swagger](#queries-in-postman-and-swagger) x
+- [Gitflow Branching Strategy](#gitflow-branching-strategy) o
+- [Documentation in Confluence](#documentation-in-confluence) x
+- [Participant](#participant) o
+- [License](#license) o
 
-```bash
-$ npm install
-```
+## Characteristics
 
-## Running the app
+* Microservice Management.
+* Category Integration.
+* Search Filtering.
+* Robust Development Practices.
+
+## Functionalities
+
+**Tip Management**
+* Registration and management of school tips.
+* Organization of tips by levels, grades, and subjects.
+* Efficient search and filtering of tips.
+
+**Technologies Used**
+* **NestJS:** Framework for building scalable and maintainable microservices.
+* **TypeScript:** Programming language that provides static typing and advanced development features.
+* **Docker:** A platform used to automate the deployment of applications in lightweight, portable containers, ensuring consistency across different environments.
+* **TypeORM:** An ORM for TypeScript and JavaScript that simplifies interaction with SQL databases such as PostgreSQL, MySQL, and SQLite, making it easier to manage data models and schema migrations.
+* **Swagger:** Tool for API documentation that facilitates the creation of interactive documentation.
+* **Confluence:** Platform for team documentation and collaboration.
+
+**Development Practices**
+* **Traceability:** Logging all user requests for monitoring and auditing purposes.
+* **Code Best Practices:** Use of design patterns, SOLID principles, and code reviews.
+* **Testing:** Implementation of unit, integration, and end-to-end tests to ensure software quality.
+* **Extensive Documentation:** Creation of documentation in Swagger and Confluence to facilitate the use and maintenance of the microservices.
+
+## Project Configuration
+
+To run the project locally, clone the repository and set up the necessary environment variables for the database.
+
+1. Clone the repository:
+
+    ``` bash
+    git clone https://github.com/cxmi02/School-Tips.git
+    cd School-Tips
+    ```
+
+2. Install the necessary dependencies:
+
+    ``` bash
+    npm install
+    ```
+
+3. Copy the .env.example file to a new .env file and configure the necessary environment variables:
+
+    ``` bash
+    cp .env.example .env    
+    ```
+
+Edit the .env file and configure the following values:
+
+    DATABASE_TYPE= Database type (e.g., postgres, mysql)
+    DATABASE_HOST= Database server address
+    DATABASE_PORT= Database connection port
+    DATABASE_USERNAME= Database username
+    DATABASE_PASSWORD= Database password
+    DATABASE_DB= Database name
+    PORT= Application port
+
+    NOTE: Rename this file to .connection.env and update the values accordingly.
+
+These steps will allow you to execute the project. Additionally, you must develop the environment variables according to your needs.
+
+## Running the App
 
 ```bash
 # development
 $ npm run start
 
-# watch mode
+# watch mode and Run Docker
 $ npm run start:dev
 
 # production mode
 $ npm run start:prod
 ```
 
-## Test
+## Docker Commands
 
 ```bash
-# unit tests
-$ npm run test
+# Make sure the database is running.
+$ docker ps
 
-# e2e tests
-$ npm run test:e2e
+# Stop.
+$ Ctrl + C
 
-# test coverage
-$ npm run test:cov
+# Delete
+$ docker-compose down
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Queries in Postman
 
-## Stay in touch
+...
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+
+## Gitflow Branching Strategy
+
+This project follows the Gitflow strategy, a robust model for software development. Here is how the branches are organized and their purpose:
+
+* `main:` Main branch with stable code for production. 
+* `dev:` Development branch with the latest features before production. 
+* `feat/AT-20-NameTask:` Branch of tasks with functionalities, identified by a Jira ID in addition to the task name.
+
+The work is integrated into the 'dev' branch for integration testing. Once 'dev' is stable and ready to be released, it is merged into 'main'.
+
+If you want to contribute to the project, create a new branch from 'dev' using the appropriate prefix (feat/AT-20-NameTask). After finishing your work and testing, open a Pull Request towards 'dev'.
+
+## Participant
+
+María Camila Sepúlveda Giraldo - Software Developer and 3D Animator
+
+* **GitHub:** [cxmi02](https://github.com/cxmi02)
+* **Instagram:** [@k_amila2002](https://www.instagram.com/k_amila2002/)
+* **Email:** sepulveda.giraldo.camila@gmail.com
 
 ## License
 
