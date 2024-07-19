@@ -44,33 +44,33 @@ export class TipController {
   }
 
   @Get('all')
-@ApiOperation({ summary: 'Retrieve all Tips' })
-@ApiQuery({
-  name: 'page',
-  required: false,
-  type: Number,
-  description: 'Page number for pagination. Default: 1',
-  example: 1,
-})
-@ApiQuery({
-  name: 'limit',
-  required: false,
-  type: Number,
-  description: 'Number of items per page. Default: 10',
-  example: 10,
-})
-@ApiResponse({ status: 200, description: 'List of all Tips' })
-@ApiResponse({ status: 404, description: 'No Tips found.' })
-@ApiInternalServerErrorResponse({
-  status: HttpStatus.INTERNAL_SERVER_ERROR,
-  description: 'Internal server error.',
-})
-async findAll(
-  @Query('page') page: number = 1,
-  @Query('limit') limit: number = 10
-): Promise<{ data: Tip[]; }> {
-  return this.tipService.findAll(page, limit);
-}
+  @ApiOperation({ summary: 'Retrieve all Tips' })
+  @ApiQuery({
+    name: 'page',
+    required: false,
+    type: Number,
+    description: 'Page number for pagination. Default: 1',
+    example: 1,
+  })
+  @ApiQuery({
+    name: 'limit',
+    required: false,
+    type: Number,
+    description: 'Number of items per page. Default: 10',
+    example: 10,
+  })
+  @ApiResponse({ status: 200, description: 'List of all Tips' })
+  @ApiResponse({ status: 404, description: 'No Tips found.' })
+  @ApiInternalServerErrorResponse({
+    status: HttpStatus.INTERNAL_SERVER_ERROR,
+    description: 'Internal server error.',
+  })
+  async findAll(
+    @Query('page') page: number = 1,
+    @Query('limit') limit: number = 10,
+  ): Promise<{ data: Tip[] }> {
+    return this.tipService.findAll(page, limit);
+  }
 
   @Get('with-filters')
   @ApiOperation({ summary: 'Retrieve Tips with Filters' })
@@ -110,10 +110,10 @@ async findAll(
     @Query('levelId') levelId?: number,
     @Query('subjectId') subjectId?: number,
     @Query('page') page: number = 1,
-    @Query('limit') limit: number = 10
+    @Query('limit') limit: number = 10,
   ): Promise<Tip[]> {
     return this.tipService.findWithFilters(levelId, subjectId, page, limit);
-  }  
+  }
 
   @Get(':id')
   @ApiOperation({ summary: 'Retrieve a Tip by ID' })
@@ -163,5 +163,4 @@ async findAll(
   async delete(@Param('id') id: number): Promise<void> {
     return this.tipService.delete(id);
   }
-
 }
