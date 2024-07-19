@@ -11,14 +11,17 @@ import { Tip } from 'src/module/tips/entities/tips.entities';
 @Entity()
 export class Level {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column({ unique: true })
   name: string;
 
   @Column({ type: 'text', nullable: true })
   description?: string;
-  
+
+  @Column({ default: false })
+  isDeleted: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 

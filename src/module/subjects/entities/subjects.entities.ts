@@ -19,13 +19,15 @@ export class Subject {
   @Column({ type: 'text', nullable: true })
   description?: string;
 
+  @Column({ default: false })
+  isDeleted: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany( type => Tip, tip => tip.subject)
+  @OneToMany((type) => Tip, (tip) => tip.subject)
   tips: Tip[];
 }
-
