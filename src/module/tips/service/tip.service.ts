@@ -64,16 +64,25 @@ export class TipService {
   async findAll(
     page: number = 1,
     limit: number = 10,
-  ): Promise<{ data: Tip[] }> {
+  ): Promise<{ data: Tip[], meta: any }> {
     try {
-      const [data] = await this.tipRepository.findAndCount({
+      const [data, total] = await this.tipRepository.findAndCount({
         where: { isDeleted: false },
         relations: ['level', 'subject'],
         skip: (page - 1) * limit,
         take: limit,
       });
-
-      return { data };
+  
+      return {
+        data,
+        meta: {
+          totalItems: total,
+          itemCount: data.length,
+          itemsPerPage: limit,
+          totalPages: Math.ceil(total / limit),
+          currentPage: page,
+        },
+      };
     } catch (error) {
       throw new HttpException(
         `Failed to find Tips: ${error.message}`,
