@@ -7,6 +7,9 @@ import config from './libs/Config/config';
 import { TipsModule } from './module/tips/tips.module';
 import { LevelsModule } from './module/levels/level.module';
 import { SubjectsModule } from './module/subjects/subject.module';
+import { Level } from './module/levels/entities/level.entities';
+import { Tip } from './module/tips/entities/tips.entities';
+import { Subject } from './module/subjects/entities/subjects.entities';
 
 @Module({
   imports: [
@@ -21,8 +24,10 @@ import { SubjectsModule } from './module/subjects/subject.module';
       username: config().database.username,
       password: config().database.password,
       database: config().database.db,
+      entities: [Level, Tip, Subject],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([Tip, Level, Subject]),
     ScheduleModule.forRoot(),
     TipsModule,
     SubjectsModule,
