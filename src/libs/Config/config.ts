@@ -1,13 +1,10 @@
-import { url } from "inspector";
-
 export default () => ({
     database: {
       type: process.env.DATABASE_TYPE || 'postgres',
-      url: process.env.DATABASE_URL || 'postgresql://Api-SchoolsTips-v1:Api-SchoolsTips-v1@localhost:5432/SchoolsTips-v1',
-      host: process.env.DATABASE_HOST || 'localhost',
+      host: process.env.DATABASE_HOST,
       port: parseInt(process.env.DATABASE_PORT, 10) || 5432,
-      username: process.env.DATABASE_USERNAME || 'Api-SchoolsTips-v1',
-      password: process.env.DATABASE_PASSWORD || 'Api-SchoolsTips-v1',
-      db: process.env.DATABASE_DB || 'SchoolsTips-v1',
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      db: process.env.DATABASE_DB,
     },
   });

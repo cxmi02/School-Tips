@@ -102,8 +102,6 @@ Edit the .env file and configure the following values:
     DATABASE_DB= Database name
     PORT= Application port
 
-    NOTE: Rename this file to .connection.env and update the values accordingly.
-
 These steps will allow you to execute the project. Additionally, you must develop the environment variables according to your needs.
 
 ## Running the App

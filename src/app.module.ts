@@ -14,12 +14,11 @@ import { Subject } from './module/subjects/entities/subjects.entities';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.connection.env`,
+      envFilePath: `.env`,
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      url: config().database.url,
       host: config().database.host,
       port: config().database.port,
       username: config().database.username,
@@ -27,6 +26,11 @@ import { Subject } from './module/subjects/entities/subjects.entities';
       database: config().database.db,
       entities: [Level, Tip, Subject],
       synchronize: true,
+      extra: {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      }
     }),
     TypeOrmModule.forFeature([Tip, Level, Subject]),
     ScheduleModule.forRoot(),
