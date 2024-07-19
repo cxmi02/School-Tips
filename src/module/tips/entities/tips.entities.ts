@@ -6,8 +6,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Subject } from 'typeorm/persistence/Subject';
-
+import { Subject } from '../../subjects/entities/subjects.entities';
 import { Level } from 'src/module/levels/entities/level.entities';
 
 @Entity()
@@ -24,6 +23,9 @@ export class Tip {
   @Column()
   author: string;
 
+  @Column({ default: false })
+  isDeleted: boolean;
+  
   @CreateDateColumn()
   createdAt: Date;
 
