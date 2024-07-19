@@ -61,14 +61,59 @@ export class TipService {
     }
   }
 
-  async findAll(includeDeleted: boolean = false): Promise<Tip[]> {
+  async findAll(
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<{ data: Tip[] }> {
     try {
-      return await this.tipRepository.find({
-        where: includeDeleted ? {} : { isDeleted: false },
-        relations: ['level', 'subject'], 
+      const [data] = await this.tipRepository.findAndCount({
+        where: { isDeleted: false },
+        relations: ['level', 'subject'],
+        skip: (page - 1) * limit,
+        take: limit,
       });
+
+      return { data };
     } catch (error) {
-      throw new HttpException(`Failed to find Tips: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        `Failed to find Tips: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async findWithFilters(
+    levelId?: number,
+    subjectId?: number,
+    page: number = 1,
+    limit: number = 10,
+  ): Promise<Tip[]> {
+    try {
+      const query = this.tipRepository
+        .createQueryBuilder('tip')
+        .leftJoinAndSelect('tip.level', 'level')
+        .leftJoinAndSelect('tip.subject', 'subject')
+        .where('tip.isDeleted = :isDeleted', { isDeleted: false });
+
+      if (levelId) {
+        query.andWhere('tip.levelId = :levelId', { levelId });
+      }
+
+      if (subjectId) {
+        query.andWhere('tip.subjectId = :subjectId', { subjectId });
+      }
+
+      query.skip((page - 1) * limit).take(limit);
+
+      const data = await query.getMany();
+      console.log('Data:', data);
+
+      return data;
+    } catch (error) {
+      throw new HttpException(
+        `Failed to find Tips with filters: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -76,7 +121,7 @@ export class TipService {
     try {
       const tip = await this.tipRepository.findOne({
         where: { id, isDeleted: false },
-        relations: ['level', 'subject']
+        relations: ['level', 'subject'],
       });
 
       if (!tip) {
@@ -85,7 +130,10 @@ export class TipService {
 
       return tip;
     } catch (error) {
-      throw new HttpException(`Failed to find Tip: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        `Failed to find Tip: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -107,7 +155,9 @@ export class TipService {
         tip.level = level;
       }
       if (subjectId) {
-        const subject = await this.subjectRepository.findOneBy({ id: subjectId });
+        const subject = await this.subjectRepository.findOneBy({
+          id: subjectId,
+        });
         if (!subject) {
           throw new HttpException('Subject not found', HttpStatus.BAD_REQUEST);
         }
@@ -116,7 +166,10 @@ export class TipService {
 
       return await this.tipRepository.save(tip);
     } catch (error) {
-      throw new HttpException(`Failed to update tip: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        `Failed to update tip: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -126,7 +179,10 @@ export class TipService {
       tip.isDeleted = true;
       await this.tipRepository.save(tip);
     } catch (error) {
-      throw new HttpException(`Failed to delete tip: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(
+        `Failed to delete tip: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 }
