@@ -6,9 +6,9 @@ services:
     container_name: SchoolsTips
     restart: always
     environment:
-      POSTGRES_DB: SchoolsTips
-      POSTGRES_USER: Api-SchoolsTips
-      POSTGRES_PASSWORD: Api-SchoolsTips
+      POSTGRES_DB: SchoolsTips-v1
+      POSTGRES_USER: Api-SchoolsTips-v1
+      POSTGRES_PASSWORD: Api-SchoolsTips-v1
     volumes:
       - /var/lib/postgresql/data
     ports:
@@ -18,8 +18,8 @@ services:
     container_name: pgadmin
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: camila@nestjs.com
-      PGADMIN_DEFAULT_PASSWORD: cami2002
+      PGADMIN_DEFAULT_EMAIL: camilasepulveda@nestjs.com
+      PGADMIN_DEFAULT_PASSWORD: cami2002*
       PGADMIN_LISTEN_PORT: 80
     ports:
       - 8080:80
