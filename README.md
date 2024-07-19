@@ -28,18 +28,18 @@ This repository contains an API developed with NestJS and TypeORM for managing s
 
 ## Content Table
 
-- [Description](#description) o
-- [Characteristics](#characteristics) o
-- [Functionalities](#functionalities) o
-- [Requirements](#requirements) x
-- [Project Configuration](#project-configuration) o
-- [Running the App](#running-the-app) o
-- [Docker Commands](#docker-commands) o
-- [Queries in Postman and Swagger](#queries-in-postman-and-swagger) x
-- [Gitflow Branching Strategy](#gitflow-branching-strategy) o
-- [Documentation in Confluence](#documentation-in-confluence) x
-- [Participant](#participant) o
-- [License](#license) o
+- [School-Tips](#school-tips)
+  - [Content Table](#content-table)
+  - [Characteristics](#characteristics)
+  - [Functionalities](#functionalities)
+  - [Requirements](#requirements)
+  - [Project Configuration](#project-configuration)
+  - [Running the App](#running-the-app)
+  - [Queries in Postman and Swagger](#queries-in-postman-and-swagger)
+  - [Gitflow Branching Strategy](#gitflow-branching-strategy)
+  - [Documentation in Confluence](#documentation-in-confluence)
+  - [Participant](#participant)
+  - [License](#license)
 
 ## Characteristics
 
@@ -58,7 +58,7 @@ This repository contains an API developed with NestJS and TypeORM for managing s
 **Technologies Used**
 * **NestJS:** Framework for building scalable and maintainable microservices.
 * **TypeScript:** Programming language that provides static typing and advanced development features.
-* **Docker:** A platform used to automate the deployment of applications in lightweight, portable containers, ensuring consistency across different environments.
+* **Vercel:** Vercel is a cloud platform that simplifies the deployment and scaling of modern web applications with automated builds and serverless functions.
 * **TypeORM:** An ORM for TypeScript and JavaScript that simplifies interaction with SQL databases such as PostgreSQL, MySQL, and SQLite, making it easier to manage data models and schema migrations.
 * **Swagger:** Tool for API documentation that facilitates the creation of interactive documentation.
 * **Confluence:** Platform for team documentation and collaboration.
@@ -68,6 +68,16 @@ This repository contains an API developed with NestJS and TypeORM for managing s
 * **Code Best Practices:** Use of design patterns, SOLID principles, and code reviews.
 * **Testing:** Implementation of unit, integration, and end-to-end tests to ensure software quality.
 * **Extensive Documentation:** Creation of documentation in Swagger and Confluence to facilitate the use and maintenance of the microservices.
+
+## Requirements
+
+To successfully run and deploy the School-Tips API, ensure you meet the following requirements:
+
+- Node.js:
+- npm (Node Package Manager)
+- PostgreSQL
+- Git
+- Vercel
 
 ## Project Configuration
 
@@ -110,30 +120,19 @@ These steps will allow you to execute the project. Additionally, you must develo
 # development
 $ npm run start
 
-# watch mode and Run Docker
+# watch mode
 $ npm run start:dev
 
 # production mode
 $ npm run start:prod
 ```
 
-## Docker Commands
+## Queries in Postman and Swagger
+To interact with the API, you can use the following resources:
 
-```bash
-# Make sure the database is running.
-$ docker ps
+- **[Postman Collection](https://riwi22.postman.co/workspace/riwi-Workspace~c2b36a8d-9198-4f24-89d1-b1878a78b405/collection/33425942-af515424-0ee7-45cf-80af-9f7964d7c38a?action=share&creator=33425942):** This collection includes all the API endpoints with example requests and responses for easy testing.
 
-# Stop.
-$ Ctrl + C
-
-# Delete
-$ docker-compose down
-```
-
-
-## Queries in Postman
-
-...
+- **[Swagger Documentation](http://localhost:3000/api):** The Swagger documentation provides an interactive interface to explore the API endpoints, view request parameters, and responses. Replace `http://localhost:3000/api` with the actual URL if Swagger is deployed in a public environment.
 
 
 ## Gitflow Branching Strategy
@@ -147,6 +146,19 @@ This project follows the Gitflow strategy, a robust model for software developme
 The work is integrated into the 'dev' branch for integration testing. Once 'dev' is stable and ready to be released, it is merged into 'main'.
 
 If you want to contribute to the project, create a new branch from 'dev' using the appropriate prefix (feat/AT-20-NameTask). After finishing your work and testing, open a Pull Request towards 'dev'.
+
+## Documentation in Confluence
+For detailed project documentation, including design, architecture, and API specifications, please refer to the documentation on Confluence:
+
+- **[Project Documentation on Confluence](https://sepulvedagiraldocamila.atlassian.net/wiki/x/uIFa)**
+
+Here you can find:
+- What the project is about.
+- Installation and configuration of the project.
+- Documentation of data modeling, entities, and DTOs.
+- How to deploy the project on Render.
+- How to use the endpoints.
+- others.
 
 ## Participant
 
