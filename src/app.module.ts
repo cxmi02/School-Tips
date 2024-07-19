@@ -19,6 +19,7 @@ import { Subject } from './module/subjects/entities/subjects.entities';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
+      url: config().database.url,
       host: config().database.host,
       port: config().database.port,
       username: config().database.username,
